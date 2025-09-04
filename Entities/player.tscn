@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://rnil3vsuysxu"]
 
-[ext_resource type="Script" uid="uid://mxkd6oeusiyl" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://mxkd6oeusiyl" path="res://Entities/player.gd" id="1_4flbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -10,6 +10,7 @@
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_4flbx")
+metadata/_custom_type_script = "uid://bql681108ghc1"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_sh265")
@@ -42,6 +43,7 @@ render_target_update_mode = 4
 
 [node name="CameraItem" type="Camera3D" parent="Head/Camera/SubViewportContainer/SubViewport"]
 cull_mask = 1047554
+current = true
 fov = 40.0
 
 [node name="Container" type="Node3D" parent="Head/Camera/SubViewportContainer/SubViewport/CameraItem"]

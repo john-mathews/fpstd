@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1bj4kjlccwx4"]
+[gd_scene load_steps=8 format=3 uid="uid://d1bj4kjlccwx4"]
 
-[ext_resource type="PackedScene" uid="uid://rnil3vsuysxu" path="res://player.tscn" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://d4ll4pfv5xrmf" path="res://Entities/tower.tscn" id="1_oi3di"]
+[ext_resource type="PackedScene" uid="uid://rnil3vsuysxu" path="res://Entities/player.tscn" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://85rrwq7jwlh6" path="res://Entities/enemy.tscn" id="2_vonw3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u52ul"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -49,6 +51,12 @@ size = Vector3(17.0679, 5.71066, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263794, 2.7023, 8.67542)
 size = Vector3(6.46362, 5.71066, 1)
 
+[node name="Tower" parent="." instance=ExtResource("1_oi3di")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39668, 5.00953)
+
 [node name="Player" parent="." instance=ExtResource("1_u52ul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28485, 0)
 collision_layer = 2
+
+[node name="Enemy" parent="." instance=ExtResource("2_vonw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31842, 12.7565)

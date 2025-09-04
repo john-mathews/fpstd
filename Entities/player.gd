@@ -1,9 +1,7 @@
-class_name Player extends CharacterBody3D
+class_name Player extends BaseCharacter
 
 @export_subgroup("Properties")
 @export var player_id = 1
-@export var movement_speed = 5
-@export var jump_strength = 8
 
 @export_subgroup("Weapons")
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4ll4pfv5xrmf"]
+
+[ext_resource type="Script" uid="uid://bql681108ghc1" path="res://Entities/base_character.gd" id="1_k1sas"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dnc73"]
+size = Vector3(1, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vedim"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vedim"]
+material = SubResource("StandardMaterial3D_vedim")
+size = Vector3(1, 3, 1)
+
+[node name="Tower" type="CharacterBody3D"]
+script = ExtResource("1_k1sas")
+max_health = 500
+current_health = 500
+movement_speed = 0
+jump_strength = 0
+max_jumps = 0
+metadata/_custom_type_script = "uid://bql681108ghc1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_dnc73")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vedim")
