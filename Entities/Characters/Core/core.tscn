@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3acssfviktb2"]
+
+[ext_resource type="Script" uid="uid://bql681108ghc1" path="res://Entities/Characters/base_character.gd" id="1_qhobl"]
+[ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/progress_bar_container.tscn" id="2_ax6a5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a5wrw"]
+radius = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5wrw"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_a5wrw"]
+material = SubResource("StandardMaterial3D_a5wrw")
+radius = 5.0
+height = 5.0
+is_hemisphere = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2p8t5"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Core" type="CharacterBody3D" node_paths=PackedStringArray("health_bar")]
+script = ExtResource("1_qhobl")
+max_health = 5000
+movement_speed = 0
+jump_strength = 0
+max_jumps = 0
+health_bar = NodePath("ProgressBarContainer")
+metadata/_custom_type_script = "uid://bql681108ghc1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_a5wrw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_a5wrw")
+
+[node name="ProgressBarContainer" parent="." instance=ExtResource("2_ax6a5")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6.57649, 0)
+texture = SubResource("ViewportTexture_2p8t5")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://85rrwq7jwlh6"]
+
+[ext_resource type="Script" uid="uid://bql681108ghc1" path="res://Entities/Characters/base_character.gd" id="1_7k104"]
+[ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/progress_bar_container.tscn" id="2_5bdg5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7xaro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7k104"]
+material = SubResource("StandardMaterial3D_7xaro")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0ifcb"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("health_bar")]
+script = ExtResource("1_7k104")
+health_bar = NodePath("ProgressBarContainer")
+metadata/_custom_type_script = "uid://bql681108ghc1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7xaro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_7k104")
+
+[node name="ProgressBarContainer" parent="." instance=ExtResource("2_5bdg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72816, 0)
+texture = SubResource("ViewportTexture_0ifcb")
