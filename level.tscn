@@ -33,6 +33,22 @@ shape = SubResource("WorldBoundaryShape3D_u52ul")
 
 [node name="Walls" type="Node" parent="."]
 
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263794, 2.7023, -5.07379)
+size = Vector3(6.46362, 5.71066, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-0.191443, 0, 0.981504, 0, 1, 0, -0.981504, 0, -0.191443, -16.8194, 2.7023, 2.13119)
+size = Vector3(6.46362, 5.71066, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(0.062355, 0, 0.998054, 0, 1, 0, -0.998054, 0, 0.062355, 9.84035, 2.7023, 0.881257)
+size = Vector3(17.0679, 5.71066, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263794, 2.7023, 8.67542)
+size = Vector3(6.46362, 5.71066, 1)
+
 [node name="Player" parent="." instance=ExtResource("1_u52ul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28485, 0)
 collision_layer = 2
