@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://rnil3vsuysxu"]
+[gd_scene load_steps=6 format=3 uid="uid://rnil3vsuysxu"]
 
 [ext_resource type="Script" uid="uid://mxkd6oeusiyl" path="res://Entities/Characters/Player/player.gd" id="1_4flbx"]
+[ext_resource type="Resource" uid="uid://dkoqrxg7xhnki" path="res://Entities/Characters/Player/default_player.tres" id="2_aur4w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -10,6 +11,7 @@
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_4flbx")
+model = ExtResource("2_aur4w")
 metadata/_custom_type_script = "uid://bql681108ghc1"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

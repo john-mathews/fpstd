@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://85rrwq7jwlh6"]
+[gd_scene load_steps=8 format=3 uid="uid://85rrwq7jwlh6"]
 
 [ext_resource type="Script" uid="uid://bql681108ghc1" path="res://Entities/Characters/base_character.gd" id="1_7k104"]
 [ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/progress_bar_container.tscn" id="2_5bdg5"]
+[ext_resource type="Resource" uid="uid://cvqge644fisvl" path="res://Entities/Characters/Resources/default_enemy.tres" id="2_kotyi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7xaro"]
 
@@ -16,6 +17,7 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("health_bar")]
 script = ExtResource("1_7k104")
+model = ExtResource("2_kotyi")
 health_bar = NodePath("ProgressBarContainer")
 metadata/_custom_type_script = "uid://bql681108ghc1"
 

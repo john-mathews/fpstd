@@ -3,8 +3,7 @@ class_name Player extends BaseCharacter
 @export_subgroup("Properties")
 @export var player_id = 1
 
-@export_subgroup("Weapons")
-
+#@export_subgroup("Weapons")
 #Commented out a ton of weapon stuff from kenney
 #@export var weapons: Array[Weapon] = []
 #
@@ -47,6 +46,7 @@ signal health_updated
 # Functions
 
 func _ready():
+	super()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	#weapon = weapons[weapon_index] # Weapon must never be nil
@@ -125,13 +125,11 @@ func handle_controls(_delta):
 	# Movement
 	
 	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	
 	movement_velocity = Vector3(input.x, 0, input.y).normalized() * movement_speed
 	
 	# Rotation
 	
 	var rotation_input := Input.get_vector("camera_right", "camera_left", "camera_down", "camera_up")
-	
 	rotation_target -= Vector3(-rotation_input.y, -rotation_input.x, 0).limit_length(1.0) * gamepad_sensitivity
 	rotation_target.x = clamp(rotation_target.x, deg_to_rad(-90), deg_to_rad(90))
 	
@@ -178,9 +176,7 @@ func action_jump():
 func action_shoot():
 	if Input.is_action_pressed("shoot"):
 		#if !blaster_cooldown.is_stopped(): return # Cooldown for shooting
-		
 		#Audio.play(weapon.sound_shoot)
-		
 		container.position.z += 0.25 # Knockback of weapon visual
 		camera.rotation.x += 0.025 # Knockback of camera
 		#movement_velocity += Vector3(0, 0, weapon.knockback) # Knockback

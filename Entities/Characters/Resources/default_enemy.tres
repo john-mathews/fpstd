@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://cvqge644fisvl"]
+
+[ext_resource type="Script" uid="uid://dg1l6wo675i04" path="res://Entities/Characters/Resources/character_model.gd" id="1_66bxh"]
+
+[resource]
+script = ExtResource("1_66bxh")
+max_health = 100
+character_type = 2
+movement_speed = 5
+jump_strength = 80
+max_jumps = 1
+movement_type = 1
+gravity = 20.0
+metadata/_custom_type_script = "uid://dg1l6wo675i04"
