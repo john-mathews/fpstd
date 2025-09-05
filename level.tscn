@@ -1,12 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1bj4kjlccwx4"]
+[gd_scene load_steps=9 format=3 uid="uid://d1bj4kjlccwx4"]
 
 [ext_resource type="PackedScene" uid="uid://d4ll4pfv5xrmf" path="res://Entities/Characters/Tower/tower.tscn" id="1_oi3di"]
 [ext_resource type="PackedScene" uid="uid://rnil3vsuysxu" path="res://Entities/Characters/Player/player.tscn" id="1_u52ul"]
-[ext_resource type="Resource" uid="uid://cqxew8ugt40au" path="res://Entities/Characters/Resources/default_tower.tres" id="2_n6hdu"]
 [ext_resource type="PackedScene" uid="uid://85rrwq7jwlh6" path="res://Entities/Characters/Enemy/enemy.tscn" id="2_vonw3"]
 [ext_resource type="PackedScene" uid="uid://c3acssfviktb2" path="res://Entities/Characters/Core/core.tscn" id="4_0b4ue"]
-[ext_resource type="Resource" uid="uid://cvqge644fisvl" path="res://Entities/Characters/Resources/default_enemy.tres" id="5_km5ld"]
-[ext_resource type="Resource" uid="uid://dhxekf56ysxoj" path="res://Entities/Characters/Resources/default_core.tres" id="7_i2t4f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u52ul"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -41,32 +38,44 @@ shape = SubResource("WorldBoundaryShape3D_u52ul")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263794, 2.7023, -5.07379)
+use_collision = true
+collision_mask = 7
 size = Vector3(6.46362, 5.71066, 1)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Walls"]
 transform = Transform3D(-0.191443, 0, 0.981504, 0, 1, 0, -0.981504, 0, -0.191443, -16.8194, 2.7023, 2.13119)
+use_collision = true
+collision_mask = 7
 size = Vector3(6.46362, 5.71066, 1)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Walls"]
 transform = Transform3D(0.062355, 0, 0.998054, 0, 1, 0, -0.998054, 0, 0.062355, 9.84035, 2.7023, 0.881257)
+use_collision = true
+collision_mask = 7
 size = Vector3(17.0679, 5.71066, 1)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263794, 2.7023, 8.67542)
+use_collision = true
+collision_mask = 7
 size = Vector3(6.46362, 5.71066, 1)
 
 [node name="Tower" parent="." groups=["Tower"] instance=ExtResource("1_oi3di")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32358, 5.00953)
-model = ExtResource("2_n6hdu")
+collision_layer = 3
+collision_mask = 7
 
 [node name="Player" parent="." instance=ExtResource("1_u52ul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28485, 0)
 collision_layer = 2
+collision_mask = 5
 
 [node name="Enemy" parent="." groups=["Enemy"] instance=ExtResource("2_vonw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31842, 12.7565)
-model = ExtResource("5_km5ld")
+collision_layer = 4
+collision_mask = 3
 
 [node name="Core" parent="." instance=ExtResource("4_0b4ue")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.250939, -18.0326)
-model = ExtResource("7_i2t4f")
+collision_layer = 3
+collision_mask = 7
