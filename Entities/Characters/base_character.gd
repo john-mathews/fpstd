@@ -1,7 +1,16 @@
 class_name BaseCharacter extends CharacterBody3D
 
-@export_subgroup("Health")
-@export var max_health := 100
+@export_subgroup("Model")
+@export var model: CharacterData
+
+var max_health: int:
+	get():
+		if model != null:
+			return model.max_health
+		else:
+			print_debug('no Character Data Model')
+			return 1
+
 var current_health: int:
 	get():
 		if health_component != null:
@@ -10,18 +19,37 @@ var current_health: int:
 			print_debug('no health component')
 			return 1
 
-@export_subgroup("Movement")
-@export var movement_speed := 5
-@export var jump_strength := 8
-@export var max_jumps := 1
+var movement_speed: int:
+	get():
+		if model != null:
+			return model.movement_speed
+		else:
+			print_debug('no Character Data Model')
+			return 1
+
+var jump_strength: int:
+	get():
+		if model != null:
+			return model.jump_strength
+		else:
+			print_debug('no Character Data Model')
+			return 1
+
+var max_jumps: int:
+	get():
+		if model != null:
+			return model.max_jumps
+		else:
+			print_debug('no Character Data Model')
+			return 1
 
 @export_subgroup("Nodes")
 #This is type node so that it can be a Sprite3d for towers, enemies, core
 #But can be a ui element for player.
 #update_health_bar func required
-@export var health_bar : Node
+@export var health_bar: Node
 
-var health_component : HealthComponent
+var health_component: HealthComponent
 
 func _init() -> void:
 	health_component = HealthComponent.new(max_health)

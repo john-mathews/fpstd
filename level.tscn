@@ -52,14 +52,14 @@ size = Vector3(17.0679, 5.71066, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263794, 2.7023, 8.67542)
 size = Vector3(6.46362, 5.71066, 1)
 
-[node name="Tower" parent="." instance=ExtResource("1_oi3di")]
+[node name="Tower" parent="." groups=["Tower"] instance=ExtResource("1_oi3di")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32358, 5.00953)
 
 [node name="Player" parent="." instance=ExtResource("1_u52ul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28485, 0)
 collision_layer = 2
 
-[node name="Enemy" parent="." instance=ExtResource("2_vonw3")]
+[node name="Enemy" parent="." groups=["Enemy"] instance=ExtResource("2_vonw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31842, 12.7565)
 
 [node name="Core" parent="." instance=ExtResource("4_0b4ue")]
