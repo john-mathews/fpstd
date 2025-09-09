@@ -103,12 +103,15 @@ func _physics_process(delta):
 
 # Mouse movement
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_captured:
 		input_mouse = event.relative / mouse_sensitivity
 		
 		rotation_target.y -= event.relative.x / mouse_sensitivity
 		rotation_target.x -= event.relative.y / mouse_sensitivity
+	
+	if event.device == $InputController.profile.device_id:
+		print(event.device)
 
 func handle_controls(_delta):
 	# Mouse capture

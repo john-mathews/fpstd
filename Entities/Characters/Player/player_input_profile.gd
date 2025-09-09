@@ -2,6 +2,11 @@ class_name PlayerInputProfile extends Resource
 #This is setting up for Local multiplayer 
 
 @export_enum('p1', 'p2', 'p3', 'p4') var player_id: String = 'p1'
+
+# -1 = kbm
+# other device ids are index of Input.get_connected_joypads()
+var device_id := -1
+
 var player_actions: Array[String] = InputMap.get_actions().filter(_match_pid)
 		
 var generic_actions: Array[String] = player_actions.map(_get_action_name)
