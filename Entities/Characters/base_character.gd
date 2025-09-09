@@ -64,7 +64,8 @@ func _ready() -> void:
 	if target_detector_area != null:
 		target_detector_area.update_target.connect(_update_target_from_area)
 		
-	brain.setup(model)
+	if brain != null && brain.has_method('setup'):
+		brain.setup(model)
 
 func _update_health() -> void:
 	if health_bar != null && health_bar.has_method('update_health_bar'):

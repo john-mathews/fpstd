@@ -16,7 +16,7 @@ func get_movement(current_velocity: Vector3, position: Vector3, delta:float) -> 
 	
 func _get_velocity(current_velocity: Vector3, position: Vector3, target_position: Vector3, delta:float) -> Vector3:
 	var v = (target_position - position).normalized() * stats.movement_speed * delta
-	return _no_z(v)
+	return _no_z(v+current_velocity)
 	
 func _no_z(vector: Vector3) -> Vector3:
 	return Vector3(vector.x, vector.y, 0)

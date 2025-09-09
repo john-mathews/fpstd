@@ -60,7 +60,7 @@ use_collision = true
 collision_mask = 7
 size = Vector3(6.46362, 5.71066, 1)
 
-[node name="Tower" parent="." groups=["Tower"] instance=ExtResource("1_oi3di")]
+[node name="Tower" parent="." instance=ExtResource("1_oi3di")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32358, 5.00953)
 collision_layer = 3
 collision_mask = 7
@@ -70,7 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28485, 0)
 collision_layer = 2
 collision_mask = 5
 
-[node name="Enemy" parent="." groups=["Enemy"] instance=ExtResource("2_vonw3")]
+[node name="Enemy" parent="." instance=ExtResource("2_vonw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31842, 12.7565)
 collision_layer = 4
 collision_mask = 3

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerProfile" load_steps=2 format=3 uid="uid://dpm4h0npxrl67"]
+
+[ext_resource type="Script" uid="uid://27yq7a6rju7u" path="res://Entities/Characters/Player/player_input_profile.gd" id="1_l6ukf"]
+
+[resource]
+script = ExtResource("1_l6ukf")
+action_map = Dictionary[String, String]({
+"jump": "jump_p2",
+"move_left": "move_left_p2",
+"move_right": "move_right_p2",
+"shoot": "shoot_p2"
+})
+metadata/_custom_type_script = "uid://27yq7a6rju7u"
