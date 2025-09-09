@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://rnil3vsuysxu"]
+[gd_scene load_steps=7 format=3 uid="uid://rnil3vsuysxu"]
 
 [ext_resource type="Script" uid="uid://mxkd6oeusiyl" path="res://Entities/Characters/Player/player.gd" id="1_4flbx"]
 [ext_resource type="Resource" uid="uid://dkoqrxg7xhnki" path="res://Entities/Characters/Player/default_player.tres" id="2_aur4w"]
+[ext_resource type="Script" uid="uid://5i4lgrwtcibo" path="res://Components/input_controller.gd" id="3_icjhs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -60,3 +61,7 @@ sprite_frames = SubResource("SpriteFrames_4flbx")
 exclude_parent = false
 target_position = Vector3(0, 0, -10)
 collide_with_areas = true
+
+[node name="InputController" type="Node" parent="."]
+script = ExtResource("3_icjhs")
+metadata/_custom_type_script = "uid://5i4lgrwtcibo"

@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4ll4pfv5xrmf"]
+[gd_scene load_steps=10 format=3 uid="uid://d4ll4pfv5xrmf"]
 
 [ext_resource type="Script" uid="uid://bql681108ghc1" path="res://Entities/Characters/base_character.gd" id="1_k1sas"]
-[ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/progress_bar_container.tscn" id="2_1bsqw"]
+[ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/ProgressBarContainer/progress_bar_container.tscn" id="2_1bsqw"]
 [ext_resource type="Resource" uid="uid://cqxew8ugt40au" path="res://Entities/Characters/Resources/default_tower.tres" id="2_nrg0k"]
+[ext_resource type="PackedScene" uid="uid://dnbegpp0ao1hi" path="res://Components/TargetDetectors/target_detector.tscn" id="4_xvysn"]
+[ext_resource type="Script" uid="uid://dv2k3yumonqbt" path="res://Components/brain.gd" id="5_8auhj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dnc73"]
 size = Vector3(1, 3, 1)
@@ -17,10 +19,12 @@ size = Vector3(2, 5, 2)
 [sub_resource type="ViewportTexture" id="ViewportTexture_dhi48"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Tower" type="CharacterBody3D" node_paths=PackedStringArray("health_bar")]
+[node name="Tower" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "target_detector_area", "brain") groups=["Tower"]]
 script = ExtResource("1_k1sas")
 model = ExtResource("2_nrg0k")
 health_bar = NodePath("ProgressBarContainer")
+target_detector_area = NodePath("TargetDetectorArea")
+brain = NodePath("Brain")
 metadata/_custom_type_script = "uid://bql681108ghc1"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -32,3 +36,9 @@ mesh = SubResource("BoxMesh_vedim")
 [node name="ProgressBarContainer" parent="." instance=ExtResource("2_1bsqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75342, 0)
 texture = SubResource("ViewportTexture_dhi48")
+
+[node name="TargetDetectorArea" parent="." instance=ExtResource("4_xvysn")]
+
+[node name="Brain" type="Node" parent="."]
+script = ExtResource("5_8auhj")
+metadata/_custom_type_script = "uid://dv2k3yumonqbt"

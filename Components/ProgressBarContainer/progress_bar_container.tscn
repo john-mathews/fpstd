@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bi6dvruadhaap"]
 
-[ext_resource type="Script" uid="uid://dma7sgfwt81pl" path="res://Components/progress_bar_container.gd" id="1_mbl35"]
+[ext_resource type="Script" uid="uid://dma7sgfwt81pl" path="res://Components/ProgressBarContainer/progress_bar_container.gd" id="1_mbl35"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_y6diu"]
 viewport_path = NodePath("SubViewport")

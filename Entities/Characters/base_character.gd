@@ -48,6 +48,8 @@ var max_jumps: int:
 #But can be a ui element for player.
 #update_health_bar func required
 @export var health_bar: Node
+@export var target_detector_area: TargetDetectorArea
+@export var brain: Node
 
 var health_component: HealthComponent
 
@@ -55,8 +57,14 @@ func _ready() -> void:
 	health_component = HealthComponent.new(max_health)
 	health_component.connect('update_health', _update_health)
 	health_component.connect('kill', _die)
+	
 	if health_bar != null && health_bar.has_method('update_health_bar'):
 		health_bar.update_health_bar(max_health, max_health)
+	
+	if target_detector_area != null:
+		target_detector_area.update_target.connect(_update_target_from_area)
+		
+	brain.setup(model)
 
 func _update_health() -> void:
 	if health_bar != null && health_bar.has_method('update_health_bar'):
@@ -66,8 +74,17 @@ func _die() -> void:
 	print('oh no %s died' % name)
 	queue_free()
 
+func _update_target_from_area(target: BaseCharacter) -> void:
+	if target_detector_area != null && brain != null:
+		brain.update_area_target(target)
+	elif brain == null:
+		print_debug('null brain on %s' % name)
+
 func take_damage(damage_amount: int) -> void:
 	health_component.damage(damage_amount)
 
 func heal(heal_amount: int) -> void:
 	health_component.heal(heal_amount)
+
+func move(delta: float) -> void:
+	velocity = brain.get_movement(velocity, global_position, delta)

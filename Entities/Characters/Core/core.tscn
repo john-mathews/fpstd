@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c3acssfviktb2"]
 
 [ext_resource type="Script" uid="uid://bql681108ghc1" path="res://Entities/Characters/base_character.gd" id="1_qhobl"]
-[ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/progress_bar_container.tscn" id="2_ax6a5"]
+[ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/ProgressBarContainer/progress_bar_container.tscn" id="2_ax6a5"]
 [ext_resource type="Resource" uid="uid://dhxekf56ysxoj" path="res://Entities/Characters/Resources/default_core.tres" id="2_r44ih"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a5wrw"]
@@ -19,7 +19,7 @@ is_hemisphere = true
 [sub_resource type="ViewportTexture" id="ViewportTexture_2p8t5"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Core" type="CharacterBody3D" node_paths=PackedStringArray("health_bar")]
+[node name="Core" type="CharacterBody3D" node_paths=PackedStringArray("health_bar") groups=["Core"]]
 script = ExtResource("1_qhobl")
 model = ExtResource("2_r44ih")
 health_bar = NodePath("ProgressBarContainer")

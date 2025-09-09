@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://85rrwq7jwlh6"]
+[gd_scene load_steps=10 format=3 uid="uid://85rrwq7jwlh6"]
 
 [ext_resource type="Script" uid="uid://bql681108ghc1" path="res://Entities/Characters/base_character.gd" id="1_7k104"]
-[ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/progress_bar_container.tscn" id="2_5bdg5"]
+[ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/ProgressBarContainer/progress_bar_container.tscn" id="2_5bdg5"]
 [ext_resource type="Resource" uid="uid://cvqge644fisvl" path="res://Entities/Characters/Resources/default_enemy.tres" id="2_kotyi"]
+[ext_resource type="PackedScene" uid="uid://dnbegpp0ao1hi" path="res://Components/TargetDetectors/target_detector.tscn" id="4_cveu2"]
+[ext_resource type="Script" uid="uid://dv2k3yumonqbt" path="res://Components/brain.gd" id="5_mffcy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7xaro"]
 
@@ -15,10 +17,12 @@ material = SubResource("StandardMaterial3D_7xaro")
 [sub_resource type="ViewportTexture" id="ViewportTexture_0ifcb"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("health_bar")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "target_detector_area", "brain") groups=["Enemy"]]
 script = ExtResource("1_7k104")
 model = ExtResource("2_kotyi")
 health_bar = NodePath("ProgressBarContainer")
+target_detector_area = NodePath("TargetDetectorArea")
+brain = NodePath("Brain")
 metadata/_custom_type_script = "uid://bql681108ghc1"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -30,3 +34,11 @@ mesh = SubResource("CapsuleMesh_7k104")
 [node name="ProgressBarContainer" parent="." instance=ExtResource("2_5bdg5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72816, 0)
 texture = SubResource("ViewportTexture_0ifcb")
+
+[node name="TargetDetectorArea" parent="." instance=ExtResource("4_cveu2")]
+init_layer = 2
+init_mask = 1
+
+[node name="Brain" type="Node" parent="."]
+script = ExtResource("5_mffcy")
+metadata/_custom_type_script = "uid://dv2k3yumonqbt"
