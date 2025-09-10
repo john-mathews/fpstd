@@ -1,7 +1,19 @@
 class_name BaseCharacter extends CharacterBody3D
 
-@export_subgroup("Model")
 @export var model: CharacterData
+@export_subgroup("Nodes")
+#This is type node so that it can be a Sprite3d for towers, enemies, core
+#But can be a ui element for player.
+#update_health_bar func required
+@export var health_bar: Node
+@export var target_detector_area: TargetDetectorArea
+@export var brain: Brain
+
+var health_component: HealthComponent
+
+var movement_velocity: Vector3
+var rotation_target: Vector3
+var gravity := 0.0
 
 var max_health: int:
 	get():
@@ -43,16 +55,6 @@ var max_jumps: int:
 			print_debug('no Character Data Model')
 			return 1
 
-@export_subgroup("Nodes")
-#This is type node so that it can be a Sprite3d for towers, enemies, core
-#But can be a ui element for player.
-#update_health_bar func required
-@export var health_bar: Node
-@export var target_detector_area: TargetDetectorArea
-@export var brain: Node
-
-var health_component: HealthComponent
-
 func _ready() -> void:
 	health_component = HealthComponent.new(max_health)
 	health_component.connect('update_health', _update_health)
@@ -66,6 +68,26 @@ func _ready() -> void:
 		
 	if brain != null && brain.has_method('setup'):
 		brain.setup(model)
+		
+func _physics_process(delta: float) -> void:
+	if brain != null:
+		_brain_update(delta)
+	var applied_velocity: Vector3
+	
+	movement_velocity = transform.basis * movement_velocity # Move forward
+	
+	applied_velocity = velocity.lerp(movement_velocity, delta * 10)
+	applied_velocity.y = - gravity
+	
+	velocity = applied_velocity
+	move_and_slide()
+
+func _brain_update(delta: float) -> void:
+	if brain != null:
+		if brain.has_method('get_movement'):
+			movement_velocity = brain.get_movement(velocity, global_position, delta)
+		if brain.has_method('get_rotation'):
+			rotation_target = brain.get_rotation(rotation_target)
 
 func _update_health() -> void:
 	if health_bar != null && health_bar.has_method('update_health_bar'):
@@ -86,6 +108,3 @@ func take_damage(damage_amount: int) -> void:
 
 func heal(heal_amount: int) -> void:
 	health_component.heal(heal_amount)
-
-func move(delta: float) -> void:
-	velocity = brain.get_movement(velocity, global_position, delta)

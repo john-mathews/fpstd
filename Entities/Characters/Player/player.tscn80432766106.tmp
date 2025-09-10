@@ -1,22 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://rnil3vsuysxu"]
+[gd_scene load_steps=8 format=3 uid="uid://rnil3vsuysxu"]
 
 [ext_resource type="Script" uid="uid://mxkd6oeusiyl" path="res://Entities/Characters/Player/player.gd" id="1_4flbx"]
 [ext_resource type="Resource" uid="uid://dkoqrxg7xhnki" path="res://Entities/Characters/Player/default_player.tres" id="2_aur4w"]
 [ext_resource type="Script" uid="uid://5i4lgrwtcibo" path="res://Components/input_controller.gd" id="3_icjhs"]
-[ext_resource type="Script" uid="uid://27yq7a6rju7u" path="res://Entities/Characters/Player/Profiles/player_input_profile.gd" id="4_xthmb"]
+[ext_resource type="Resource" uid="uid://b3rklxho85jos" path="res://Entities/Characters/Player/Profiles/p1_profile.tres" id="4_xthmb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4flbx"]
-
-[sub_resource type="Resource" id="Resource_oao1i"]
-script = ExtResource("4_xthmb")
-player_id = "p1"
-mouse_sensitivity = 700
-gamepad_sensitivity = 0.075
-metadata/_custom_type_script = "uid://27yq7a6rju7u"
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("brain") groups=["Player"]]
 script = ExtResource("1_4flbx")
@@ -73,5 +66,5 @@ collide_with_areas = true
 
 [node name="InputController" type="Node" parent="."]
 script = ExtResource("3_icjhs")
-profile = SubResource("Resource_oao1i")
+profile = ExtResource("4_xthmb")
 metadata/_custom_type_script = "uid://5i4lgrwtcibo"

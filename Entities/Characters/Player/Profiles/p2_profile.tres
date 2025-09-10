@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerProfile" load_steps=2 format=3 uid="uid://dpm4h0npxrl67"]
 
-[ext_resource type="Script" uid="uid://27yq7a6rju7u" path="res://Entities/Characters/Player/player_input_profile.gd" id="1_l6ukf"]
+[ext_resource type="Script" uid="uid://27yq7a6rju7u" path="res://Entities/Characters/Player/Profiles/player_input_profile.gd" id="1_l6ukf"]
 
 [resource]
 script = ExtResource("1_l6ukf")

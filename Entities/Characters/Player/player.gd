@@ -10,18 +10,11 @@ class_name Player extends BaseCharacter
 #var weapon: Weapon
 var weapon_index := 0
 
-var mouse_sensitivity = 700
-var gamepad_sensitivity := 0.075
-
 var mouse_captured := true
-
-var movement_velocity: Vector3
-var rotation_target: Vector3
 
 var input_mouse: Vector2
 
 var health: int = 100
-var gravity := 0.0
 
 var previously_floored := false
 
@@ -56,27 +49,14 @@ func _physics_process(delta):
 	# Handle functions
 	handle_controls(delta)
 	handle_gravity(delta)
-	
-	# Movement
-
-	var applied_velocity: Vector3
-	
-	movement_velocity = transform.basis * movement_velocity # Move forward
-	
-	applied_velocity = velocity.lerp(movement_velocity, delta * 10)
-	applied_velocity.y = - gravity
-	
-	velocity = applied_velocity
-	move_and_slide()
-	
+	super(delta)
 	# Rotation
-	
 	camera.rotation.z = lerp_angle(camera.rotation.z, -input_mouse.x * 25 * delta, delta * 5)
 	
 	camera.rotation.x = lerp_angle(camera.rotation.x, rotation_target.x, delta * 25)
 	rotation.y = lerp_angle(rotation.y, rotation_target.y, delta * 25)
 	
-	container.position = lerp(container.position, container_offset - (basis.inverse() * applied_velocity / 30), delta * 10)
+	container.position = lerp(container.position, container_offset - (basis.inverse() * velocity / 30), delta * 10)
 	
 	# Movement sound
 	
@@ -105,10 +85,10 @@ func _physics_process(delta):
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_captured:
-		input_mouse = event.relative / mouse_sensitivity
+		input_mouse = event.relative / brain.profile.mouse_sensitivity
 		
-		rotation_target.y -= event.relative.x / mouse_sensitivity
-		rotation_target.x -= event.relative.y / mouse_sensitivity
+		rotation_target.y -= event.relative.x /  brain.profile.mouse_sensitivity
+		rotation_target.x -= event.relative.y /  brain.profile.mouse_sensitivity
 	
 	if event.device == $InputController.profile.device_id:
 		print(event.device)
@@ -124,17 +104,6 @@ func handle_controls(_delta):
 		mouse_captured = false
 		
 		input_mouse = Vector2.ZERO
-	
-	# Movement
-	
-	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	movement_velocity = Vector3(input.x, 0, input.y).normalized() * movement_speed
-	
-	# Rotation
-	
-	var rotation_input := Input.get_vector("camera_right", "camera_left", "camera_down", "camera_up")
-	rotation_target -= Vector3(-rotation_input.y, -rotation_input.x, 0).limit_length(1.0) * gamepad_sensitivity
-	rotation_target.x = clamp(rotation_target.x, deg_to_rad(-90), deg_to_rad(90))
 	
 	# Shooting
 	
