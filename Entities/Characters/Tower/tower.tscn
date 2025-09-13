@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://d4ll4pfv5xrmf"]
 
-[ext_resource type="Script" uid="uid://bql681108ghc1" path="res://Entities/Characters/base_character.gd" id="1_k1sas"]
+[ext_resource type="Script" uid="uid://dfdaqxnylgrxj" path="res://Entities/Characters/Tower/tower.gd" id="1_xvysn"]
 [ext_resource type="PackedScene" uid="uid://bi6dvruadhaap" path="res://Components/ProgressBarContainer/progress_bar_container.tscn" id="2_1bsqw"]
 [ext_resource type="Resource" uid="uid://cqxew8ugt40au" path="res://Entities/Characters/Resources/default_tower.tres" id="2_nrg0k"]
 [ext_resource type="PackedScene" uid="uid://dnbegpp0ao1hi" path="res://Components/TargetDetectors/target_detector.tscn" id="4_xvysn"]
@@ -22,7 +22,7 @@ viewport_path = NodePath("SubViewport")
 [node name="Tower" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "target_detector_area", "brain") groups=["Tower"]]
 collision_layer = 3
 collision_mask = 7
-script = ExtResource("1_k1sas")
+script = ExtResource("1_xvysn")
 model = ExtResource("2_nrg0k")
 health_bar = NodePath("ProgressBarContainer")
 target_detector_area = NodePath("TargetDetectorArea")

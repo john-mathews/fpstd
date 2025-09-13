@@ -72,8 +72,7 @@ func _physics_process(delta):
 	
 	previously_floored = is_on_floor()
 	
-	# Falling/respawning
-	
+	# Falling/respawning world boundaries at 0 so shouldn't happen but just in case
 	if position.y < -10:
 		get_tree().reload_current_scene()
 
