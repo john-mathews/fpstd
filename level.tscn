@@ -37,7 +37,7 @@ shape = SubResource("WorldBoundaryShape3D_u52ul")
 [node name="Walls" type="Node" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263794, 2.7023, -5.07379)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.56685, 2.7023, -31.1952)
 use_collision = true
 collision_mask = 7
 size = Vector3(6.46362, 5.71066, 1)
@@ -55,13 +55,13 @@ collision_mask = 7
 size = Vector3(17.0679, 5.71066, 1)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.263794, 2.7023, 8.67542)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0196, 2.7023, -27.8004)
 use_collision = true
 collision_mask = 7
 size = Vector3(6.46362, 5.71066, 1)
 
 [node name="Tower" parent="." instance=ExtResource("1_oi3di")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32358, 5.00953)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.84163, 2.32358, -23.1646)
 collision_layer = 3
 collision_mask = 7
 
@@ -71,11 +71,11 @@ collision_layer = 2
 collision_mask = 5
 
 [node name="Enemy" parent="." instance=ExtResource("2_vonw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31842, 12.7565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31842, 19.8297)
 collision_layer = 4
 collision_mask = 3
 
 [node name="Core" parent="." instance=ExtResource("4_0b4ue")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.250939, -18.0326)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.250939, -67.6278)
 collision_layer = 3
 collision_mask = 7

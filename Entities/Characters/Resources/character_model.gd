@@ -17,6 +17,8 @@ enum MoveTypes {
 #@export var weapons: Array[Weapon]
 @export var character_type: CharacterTypes
 @export var movement_speed := 50
+@export var acceleration := 10
+@export var grav_acceleration := 20
 @export var jump_strength := 8
 @export var max_jumps := 1
 @export var movement_type: MoveTypes = MoveTypes.GROUND

@@ -30,3 +30,17 @@ func find_core_position(current_velocity: Vector3, position: Vector3, delta:floa
 	
 func update_area_target(target: BaseCharacter) -> void:
 	area_target = target
+	
+func jump(jump_strength: float, gravity: float, max_jumps: int, jump_count: int) -> JumpInfo:
+	var info = JumpInfo.new()
+	if jump_count < max_jumps:
+		gravity = - jump_strength
+		jump_count += 1
+		#Audio.play("sounds/jump_a.ogg, sounds/jump_b.ogg, sounds/jump_c.ogg")
+	info.jump_count = jump_count
+	info.gravity = gravity
+	return info
+
+class JumpInfo:
+	var gravity
+	var jump_count

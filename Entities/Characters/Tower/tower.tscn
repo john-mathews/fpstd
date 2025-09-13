@@ -20,6 +20,8 @@ size = Vector3(2, 5, 2)
 viewport_path = NodePath("SubViewport")
 
 [node name="Tower" type="CharacterBody3D" node_paths=PackedStringArray("health_bar", "target_detector_area", "brain") groups=["Tower"]]
+collision_layer = 3
+collision_mask = 7
 script = ExtResource("1_k1sas")
 model = ExtResource("2_nrg0k")
 health_bar = NodePath("ProgressBarContainer")

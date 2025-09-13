@@ -18,9 +18,6 @@ var health: int = 100
 
 var previously_floored := false
 
-var jump_single := true
-var jump_double := true
-
 var container_offset = Vector3(1.2, -1.1, -2.75)
 
 var tween: Tween
@@ -37,7 +34,6 @@ signal health_updated
 @export var crosshair: TextureRect
 
 # Functions
-
 func _ready():
 	super()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -48,7 +44,7 @@ func _ready():
 func _physics_process(delta):
 	# Handle functions
 	handle_controls(delta)
-	handle_gravity(delta)
+	#handle_gravity(delta)
 	super(delta)
 	# Rotation
 	camera.rotation.z = lerp_angle(camera.rotation.z, -input_mouse.x * 25 * delta, delta * 5)
@@ -93,8 +89,7 @@ func _input(event: InputEvent) -> void:
 	if event.device == $InputController.profile.device_id:
 		print(event.device)
 
-func handle_controls(_delta):
-	# Mouse capture
+func handle_mouse_capture():
 	if Input.is_action_just_pressed("mouse_capture"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		mouse_captured = true
@@ -104,44 +99,25 @@ func handle_controls(_delta):
 		mouse_captured = false
 		
 		input_mouse = Vector2.ZERO
+		
+func handle_jumps():
+	if jump_count < max_jumps:
+		jump_count += 1
+		
+func handle_controls(_delta):
+	handle_mouse_capture()
 	
 	# Shooting
-	
 	action_shoot()
 	
-	# Jumping
-	
 	if Input.is_action_just_pressed("jump"):
-		if jump_single or jump_double:
-			pass
-			#Audio.play("sounds/jump_a.ogg, sounds/jump_b.ogg, sounds/jump_c.ogg")
-		
-		if jump_double:
-			gravity = - jump_strength
-			jump_double = false
+		var info = brain.jump(jump_strength, gravity, model.max_jumps, jump_count)
+		gravity = info.gravity
+		jump_count = info.jump_count
+
 			
-		if (jump_single): action_jump()
-		
 	# Weapon switching
-	
 	#action_weapon_toggle()
-
-# Handle gravity
-
-func handle_gravity(delta):
-	gravity += 20 * delta
-	
-	if gravity > 0 and is_on_floor():
-		jump_single = true
-		gravity = 0
-
-# Jumping
-
-func action_jump():
-	gravity = - jump_strength
-	
-	jump_single = false;
-	jump_double = true;
 
 # Shooting
 
@@ -238,10 +214,3 @@ func action_shoot():
 	#
 	#raycast.target_position = Vector3(0, 0, -1) * weapon.max_distance
 	#crosshair.texture = weapon.crosshair
-
-func damage(amount):
-	health -= amount
-	health_updated.emit(health) # Update health on HUD
-	
-	if health < 0:
-		get_tree().reload_current_scene() # Reset when out of health

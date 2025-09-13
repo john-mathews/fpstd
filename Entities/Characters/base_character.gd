@@ -14,6 +14,7 @@ var health_component: HealthComponent
 var movement_velocity: Vector3
 var rotation_target: Vector3
 var gravity := 0.0
+var jump_count := 0
 
 var max_health: int:
 	get():
@@ -76,8 +77,10 @@ func _physics_process(delta: float) -> void:
 	
 	movement_velocity = transform.basis * movement_velocity # Move forward
 	
-	applied_velocity = velocity.lerp(movement_velocity, delta * 10)
-	applied_velocity.y = - gravity
+	applied_velocity = velocity.lerp(movement_velocity, delta * model.acceleration)
+	if model.movement_type == CharacterData.MoveTypes.GROUND:
+		_handle_gravity(delta)
+		applied_velocity.y = - gravity
 	
 	velocity = applied_velocity
 	move_and_slide()
@@ -105,6 +108,18 @@ func _update_target_from_area(target: BaseCharacter) -> void:
 
 func take_damage(damage_amount: int) -> void:
 	health_component.damage(damage_amount)
-
+	#health -= amount
+	#health_updated.emit(health) # Update health on HUD
+	
+	#if health < 0:
+		#get_tree().reload_current_scene() # Reset when out of health
+		
 func heal(heal_amount: int) -> void:
 	health_component.heal(heal_amount)
+
+func _handle_gravity(delta):
+	gravity += model.grav_acceleration * delta
+	
+	if gravity > 0 and is_on_floor():
+		jump_count = 0
+		gravity = 0

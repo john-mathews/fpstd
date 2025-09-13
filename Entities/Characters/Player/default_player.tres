@@ -6,7 +6,7 @@
 script = ExtResource("1_1e083")
 max_health = 100
 character_type = 3
-movement_speed = 5
+movement_speed = 10
 jump_strength = 8
 max_jumps = 2
 movement_type = 1

@@ -19,6 +19,8 @@ gamepad_sensitivity = 0.075
 metadata/_custom_type_script = "uid://27yq7a6rju7u"
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("brain") groups=["Player"]]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_4flbx")
 model = ExtResource("2_aur4w")
 brain = NodePath("InputController")

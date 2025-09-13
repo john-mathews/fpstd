@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://tsbpsm6hibdg" path="res://Components/TargetDetectors/target_detector.gd" id="1_khxvr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bjhlq"]
-radius = 10.0
+radius = 5.0
 
 [node name="TargetDetectorArea" type="Area3D"]
 collision_layer = 0
